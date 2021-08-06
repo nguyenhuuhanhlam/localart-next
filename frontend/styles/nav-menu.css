@@ -1,0 +1,91 @@
+.bg-light {
+	font-size: 11pt;
+	letter-spacing: .1em;
+}
+
+.navbar-collapse {
+	text-align: center;
+}
+
+.navbar-toggler {
+	border: none !important;
+	background: transparent !important;
+}
+
+.navbar-toggler:focus {
+	outline: none;
+	background: transparent !important;
+}
+
+.navbar-toggler .icon-bar {
+	background-color: #000;
+	transform: rotate(0deg) translate(0px, 0px);
+	transition: ease all .2s;
+}
+
+.navbar-toggler .icon-bar {
+	display: block;
+	width: 22px;
+	height: 1px;
+	border-radius: 1px;
+}
+
+.navbar-toggler .icon-bar+.icon-bar {
+	margin-top: 5px;
+}
+
+.icon-bar:nth-child(2) {
+	width: 16px;
+	transition: ease all .2s;
+}
+
+.navbar-toggler:hover>.icon-bar:nth-child(2) {
+	width: 22px;
+	transition: ease all .2s;
+}
+
+.navbar-toggler:active>.icon-bar:nth-child(2) {
+	width: 22px;
+	transition: ease all .2s;
+}
+
+.navbar-toggler:not(.collapsed) .icon-bar:nth-child(1) {
+	transform: rotate(45deg) translate(5px, 4px);
+	transition: ease all .2s;
+}
+
+.navbar-toggler:not(.collapsed) .icon-bar:nth-child(2) {
+	opacity: 0;
+	transition: ease all .2s;
+}
+
+.navbar-toggler:not(.collapsed) .icon-bar:nth-child(3) {
+	transform: rotate(-45deg) translate(4px, -4px);
+	transition: ease all .2s;
+}
+
+@media only screen and (max-width: 768px) {
+	.navbar-brand {
+		transform: translateX(-50%);
+		left: 50%;
+		position: relative;
+	}
+}
+
+/* * * * * * */
+
+.cart-count {
+	display: inline-block;
+	position: relative;
+	top: -8px;
+	font-size: .7em;
+	color: white;
+	background-color: green;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	line-height: 12px;
+	border-radius: 6px;
+	width: 12px;
+	height: 12px;
+}
