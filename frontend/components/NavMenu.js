@@ -1,15 +1,20 @@
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { Nav,Navbar,Container } from 'react-bootstrap'
 
 
-const NavMenu = ({ logo,cartProps }) =>
+const NavMenu = ({ logo }) =>
 {
+	const cart = useSelector((state) => state.cart)
+
 	return (
 		<Navbar bg="light" variant="light" expand="lg" sticky="top">
 			<Container>
-				<Navbar.Brand href="/">
-					<img alt="logo" src={logo} width="42" />
-				</Navbar.Brand>
+				<Link href="/" passHref>
+					<Navbar.Brand >
+						<img alt="logo" src={logo} width="42" />
+					</Navbar.Brand>
+				</Link>
 				<Navbar.Toggle
 					aria-controls="responsive-navbar-nav"
 					children={(
@@ -22,16 +27,18 @@ const NavMenu = ({ logo,cartProps }) =>
 				/>
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link href="/artists">Artists</Nav.Link>
-						<Nav.Link href="/paintings">Paintings</Nav.Link>
+						<Link href="/artists" passHref><Nav.Link>Artists</Nav.Link></Link>
+						<Link href="/paintings"passHref><Nav.Link>Paintings</Nav.Link></Link>
 					</Nav>
 					<Nav>
-						<Nav.Link href="/search"><i className="bi bi-search"/></Nav.Link>
-						<Nav.Link href="/cart">
-							<i className="bi bi-bag">
-								{/*{ cartProps.count ? <span className="cart-count">{ cartProps.count }</span> : null } */}
-							</i>
-						</Nav.Link>
+						<Link href="/search" passHref><Nav.Link><i className="bi bi-search"/></Nav.Link></Link>
+						<Link href="/cart" passHref>
+							<Nav.Link>
+								<i className="bi bi-bag">
+								{ cart.length ? <span className="cart-count">{ cart.length }</span> : null } 
+								</i>
+							</Nav.Link>
+						</Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

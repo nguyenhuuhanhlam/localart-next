@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { Breadcrumb, Container } from 'react-bootstrap'
 import { PaintingListInfinite } from '../../components'
 
 const Paintings = ({ paintings }) =>
@@ -6,10 +7,16 @@ const Paintings = ({ paintings }) =>
 	const router = useRouter()
 
 	return (
-		<PaintingListInfinite
-			items={paintings}
-			itemOnClick={ e=>router.push(`/paintings/d/${e.id}`) }
-		/>
+		<Container className="p-3">
+			<Breadcrumb>
+				<Breadcrumb.Item active>All Paintings</Breadcrumb.Item>
+				<Breadcrumb.Item href="">Filters</Breadcrumb.Item>
+			</Breadcrumb>
+			<PaintingListInfinite
+				items={paintings}
+				itemOnClick={ e=>router.push(`/paintings/d/${e.id}`) }
+			/>
+		</Container>
 	)
 }
 
