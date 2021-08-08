@@ -12,7 +12,7 @@ const NavMenu = ({ logo }) =>
 			<Container>
 				<Link href="/" passHref>
 					<Navbar.Brand >
-						<img alt="logo" src={logo} width="42" />
+						<img alt="logo" src={logo} width="36" />
 					</Navbar.Brand>
 				</Link>
 				<Navbar.Toggle

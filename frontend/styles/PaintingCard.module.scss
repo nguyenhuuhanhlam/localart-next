@@ -1,0 +1,27 @@
+.photo {
+	display: block;
+	cursor: pointer;
+}
+.infos {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 4px;
+}
+	.title {
+		font-size: .8em;
+		text-transform: capitalize;
+	}
+	.artist {
+		cursor: pointer;
+		font-size: .75em;
+		color: gray;
+		&:hover { color:darkgoldenrod }
+	}
+	.in_stock {
+		& i {
+			font-size: 10px;
+			padding-left: 8px;
+			color: green;
+		}
+	}

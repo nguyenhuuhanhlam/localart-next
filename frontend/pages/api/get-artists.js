@@ -3,7 +3,7 @@ import { STRAPI_ENDPOINT } from '../../lib/constants'
 
 export default function handler(req, res)
 {
-	const query = gql`
+	const q = gql`
 		{
 			artists {
 				id
@@ -11,6 +11,6 @@ export default function handler(req, res)
 			}
 		}
 	`
-	return request(STRAPI_ENDPOINT+'/graphql', query)
+	return request(STRAPI_ENDPOINT+'/graphql', q)
 		.then(data=>res.status(200).json(data))
 }

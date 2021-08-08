@@ -6,6 +6,8 @@ import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../styles/nav-menu.css'
+import 'swiper/swiper.scss'
+import "swiper/components/pagination/pagination.min.css"
 import logo from './logo-notext.svg'
 
 

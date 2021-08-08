@@ -1,7 +1,7 @@
 import { Container } from 'react-bootstrap'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { PaintingCard, InformationIndication } from './'
-import styles from '../styles/PaintingListInfinite.module.css'
+import styles from '../styles/PaintingListInfinite.module.scss'
 
 const PaintingListInfinite = ({ items,next,hasMore,itemOnClick }) =>
 {
@@ -11,7 +11,7 @@ const PaintingListInfinite = ({ items,next,hasMore,itemOnClick }) =>
 			next={next}
 			hasMore={hasMore}
 			loader={ <InformationIndication text="Loading..." iconName="bi-hourglass" /> }
-			endMessage={ <InformationIndication text="End List." iconName="bi-arrow-bar-up" /> }
+			endMessage={ <InformationIndication text="" iconName="bi-arrow-bar-up" /> }
 		>
 			<Container className={`d-flex flex-wrap p-0 ${styles.layout}`}>
 			{
