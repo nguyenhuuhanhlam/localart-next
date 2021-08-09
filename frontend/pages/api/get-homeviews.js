@@ -7,6 +7,7 @@ export default function handler(req, res)
 		{
 			homeViews {
 				artists {
+					id
 					full_name
 					represent {
 						id
@@ -21,10 +22,12 @@ export default function handler(req, res)
 					}
 				}
 				paintings {
+					id
 					en_title
 					vn_title
 					in_stock
 					artist {
+						id
 						full_name
 					}
 					media {

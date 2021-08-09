@@ -54,7 +54,12 @@ const App = ({ home_artists,home_paintings }) =>
 					{
 						home_paintings.map((v,k)=>{
 							return (
-								<PaintingCard key={k} item={v} options={{pick:true}} />
+								<PaintingCard
+									key={k}
+									item={v}
+									options={{pick:true}}
+									itemOnClick={()=>console.log(v)}
+								/>
 							)
 						})
 					}

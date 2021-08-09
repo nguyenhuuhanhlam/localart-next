@@ -9,8 +9,7 @@ const PaintingDetail = ({ painting }) =>
 {
 	const router = useRouter()
 	const dispatch = useDispatch()	
-
-	const {id,vn_title,artist,painting_type,price} = painting
+	const { id,vn_title,artist,painting_type,price } = painting
 
 	return (
 		<>
