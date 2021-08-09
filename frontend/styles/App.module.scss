@@ -3,21 +3,34 @@
 }
 .container {
 	position: relative;
-	height:100vh;
 	background-color: white;
 	z-index: 5;
 	padding: 1em;
+	min-height: 100vh;
 }
 .editor_pick {
 	display: flex;
 	flex-wrap: wrap;
-	// & > div:not(:first-child) {
-	// 	padding-left: 16px;
-	// 	padding-top: 16px;
-	// }
-
 	& > div {
 		padding-right: 16px;
 		padding-bottom: 16px;
+	}
+}
+.slide_caption {
+	position: absolute;
+	bottom: 3em;
+	left: 1em;
+
+	& > span {
+		text-transform: capitalize;
+		background-color: rgba(0, 0, 0, .5);
+		display: table;
+		color: whitesmoke;
+	}
+
+	& > span:last-child {
+		background-color: whitesmoke;
+		color: black;
+		font-size: .75em;
 	}
 }

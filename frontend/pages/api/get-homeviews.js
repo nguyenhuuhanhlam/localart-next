@@ -15,6 +15,9 @@ export default function handler(req, res)
 						media {
 							formats
 						}
+						painting_type {
+							en_name
+						}
 					}
 				}
 				paintings {

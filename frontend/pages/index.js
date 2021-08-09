@@ -33,16 +33,22 @@ const App = ({ home_artists,home_paintings }) =>
 										height: '50vh'
 									}}
 								/>
+								<div className={styles.slide_caption}>
+									<span><strong>{ v.represent.vn_title.replace('|','\u2022') }</strong></span>
+									<span>{ v.full_name }</span>
+									<span>{ v.represent.painting_type.en_name }</span>
+								</div>
 							</SwiperSlide>
 						)
 					})
 				}
+
 			</Swiper>
 			
 			<div className={styles.helper} />
 			<div className={styles.container}>
 
-				<h5>News</h5>
+				<h5 className="pt-4">News</h5>
 				<h6>EDITOR'S PICK</h6>
 				<div className={styles.editor_pick}>
 					{
