@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.6.1",
     "bootstrap": "^5.1.0",
     "bootstrap-icons": "^1.5.0",
+    "graphql": "^15.5.1",
     "graphql-request": "^3.5.0",
     "next": "11.0.1",
     "next-images": "^1.8.1",
