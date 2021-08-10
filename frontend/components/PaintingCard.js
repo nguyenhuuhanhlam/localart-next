@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { STRAPI_ENDPOINT } from '../lib/constants'
 import styles from '../styles/PaintingCard.module.scss'
 
@@ -17,6 +18,7 @@ const InStockStatus = ({ in_stock }) =>
 const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnClick }) =>
 {
 	const { vn_title,artist,media,painting_type,in_stock } = item
+	const imgLoader = ({ src }) => STRAPI_ENDPOINT+src
 
 	if (item)
 		return (
@@ -25,7 +27,13 @@ const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnCli
 					className={styles.photo}
 					onClick={itemOnClick}
 				>
-					<img alt="" src={ STRAPI_ENDPOINT+media[0].formats.thumbnail.url }/>
+					<Image
+						loader={imgLoader}
+						alt=""
+						src={ media[0].formats.thumbnail.url }
+						width={150} height={150}
+						objectFit='cover'
+					/>
 				</div>
 				<div className={styles.infos}>
 					<div>

@@ -18,12 +18,14 @@
 // 	}
 // `
 
+import styles from '../styles/InformationIndication.module.scss'
+
 const InformationIndication = ({ iconName,text }) =>
 {
 	return (
-		<div>
+		<div className={styles.layout}>
 			<i className={"bi " + iconName}/>
-			<div className="text">{text}</div>
+			<div className={styles.text}>{text}</div>
 		</div>
 	)
 }

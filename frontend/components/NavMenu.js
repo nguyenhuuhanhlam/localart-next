@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useSelector } from 'react-redux'
 import { Nav,Navbar,Container } from 'react-bootstrap'
+
 
 
 const NavMenu = ({ logo }) =>
@@ -12,19 +14,18 @@ const NavMenu = ({ logo }) =>
 			<Container>
 				<Link href="/" passHref>
 					<Navbar.Brand >
-						<img alt="logo" src={logo} width="36" />
+						<Image alt="logo" src={logo} width={36} height={36}/>
 					</Navbar.Brand>
 				</Link>
 				<Navbar.Toggle
-					aria-controls="responsive-navbar-nav"
-					children={(
-						<>
-							<span className="icon-bar top-bar"></span>
-							<span className="icon-bar middle-bar"></span>
-							<span className="icon-bar bottom-bar"></span>
-						</>
-					)}
-				/>
+					aria-controls="responsive-navbar-nav"	
+				>
+					<>
+						<span className="icon-bar top-bar"></span>
+						<span className="icon-bar middle-bar"></span>
+						<span className="icon-bar bottom-bar"></span>
+					</>
+				</Navbar.Toggle>
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
 						<Link href="/artists" passHref><Nav.Link>Artists</Nav.Link></Link>
@@ -47,3 +48,16 @@ const NavMenu = ({ logo }) =>
 }
 
 export default NavMenu
+
+/*
+<Navbar.Toggle
+					aria-controls="responsive-navbar-nav"
+					children={(
+						<>
+							<span className="icon-bar top-bar"></span>
+							<span className="icon-bar middle-bar"></span>
+							<span className="icon-bar bottom-bar"></span>
+						</>
+					)}
+				/>
+*/

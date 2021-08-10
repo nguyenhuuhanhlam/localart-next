@@ -1,4 +1,7 @@
-.layout > div {
-	padding-right: 16px;
-	padding-bottom: 16px;
+.layout {
+	display: grid;
+	grid-gap: 16px;
+	& > div {
+		
+	}
 }

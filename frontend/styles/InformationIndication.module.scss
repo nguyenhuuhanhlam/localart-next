@@ -1,0 +1,12 @@
+.layout {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 2em;
+}
+.text {
+	display: inherit;
+	padding-left: 8px;
+	color: gray;
+	font-size: 10pt;
+}

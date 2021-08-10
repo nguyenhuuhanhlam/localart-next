@@ -1,11 +1,14 @@
+import Link from 'next/link'
 import { Breadcrumb, Container } from 'react-bootstrap'
 
 const PaintingsFilters = () =>
 {
 	return (
-		<Container>
+		<Container className="p-3">
 			<Breadcrumb>
-				<Breadcrumb.Item href="/paintings">All Paintings</Breadcrumb.Item>
+				<Link href="/paintings" passHref>
+					<Breadcrumb.Item>All Paintings</Breadcrumb.Item>
+				</Link>
 				<Breadcrumb.Item active>Filters</Breadcrumb.Item>
 			</Breadcrumb>
 		</Container>

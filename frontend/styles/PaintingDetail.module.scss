@@ -1,0 +1,42 @@
+$p: 1em;
+
+.painting_title {
+	font-size: 1.25em;
+	text-transform: capitalize;
+}
+.artist { font-size: .85em; }
+.painting_type {
+	background-color: whitesmoke;
+	color: black;
+	font-size: .85em;
+	display: table;
+	padding: 0 4px;
+}
+
+.year {
+	padding-top: 2em;
+
+	& > span:first-child {
+		padding-right: $p;
+		font-size: .85em;
+	}
+}
+
+.price {
+	& > span:first-child {
+		padding-right: $p;
+		font-size: .85em;
+	}
+	& > span:last-child {
+		color: darkgoldenrod;
+	}
+}
+
+.dimension {
+	& > span:first-child {
+		padding-right: $p;
+		font-size: .85em;
+	}
+}
+.action { padding-top: 2em; }
+.by_artist { color: darkgoldenrod; }

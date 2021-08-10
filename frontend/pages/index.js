@@ -1,16 +1,31 @@
+import { useEffect,useState } from 'react'
+import { useRouter } from 'next/router'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Pagination } from 'swiper/core'
 import { Nav,Navbar,Container } from 'react-bootstrap'
 
-import { PaintingCard } from '../components'
+import { PaintingCard,InformationIndication } from '../components'
 import { HOST_URL,STRAPI_ENDPOINT } from '../lib/constants'
 import styles from '../styles/App.module.scss'
 
 SwiperCore.use([Pagination])
 
-const App = ({ home_artists,home_paintings }) =>
+const App = () =>
 {
-	// console.log(home_paintings)
+	const router = useRouter()
+	const [data,setData] = useState({ home_artists:[], home_paintings:[] })
+
+	useEffect(()=>{
+		fetch(`${HOST_URL}/api/get-homeviews`)
+			.then(response=>response.json())
+			.then(jsonData=>{
+				setData({
+					home_artists:jsonData.homeViews[0].artists,
+					home_paintings: jsonData.homeViews[0].paintings
+				})
+			})
+	},[])
+
 	return (
 		<>
 			<Swiper
@@ -21,7 +36,8 @@ const App = ({ home_artists,home_paintings }) =>
 				}}
 			>
 				{
-					home_artists.map((v,k)=>{
+					data.home_artists.length
+					? data.home_artists.map((v,k)=>{
 						return (
 							<SwiperSlide key={k}>
 								<div
@@ -41,6 +57,7 @@ const App = ({ home_artists,home_paintings }) =>
 							</SwiperSlide>
 						)
 					})
+					: <InformationIndication text="Pending..." iconName="bi-hourglass" />
 				}
 
 			</Swiper>
@@ -52,35 +69,24 @@ const App = ({ home_artists,home_paintings }) =>
 				<h6>EDITOR'S PICK</h6>
 				<div className={styles.editor_pick}>
 					{
-						home_paintings.map((v,k)=>{
+						data.home_paintings.length
+						? data.home_paintings.map((v,k)=>{
 							return (
 								<PaintingCard
 									key={k}
 									item={v}
 									options={{pick:true}}
-									itemOnClick={()=>console.log(v)}
+									itemOnClick={ ()=>router.push(`/paintings/d/${v.id}`) }
 								/>
 							)
 						})
+						: <InformationIndication text="Pending..." iconName="bi-hourglass" />
 					}
 				</div>
 
 			</div>
 		</>
 	)
-}
-
-App.getInitialProps = async () =>
-{
-	const res = await fetch(`${HOST_URL}/api/get-homeviews`)
-	const json = await res.json()
-
-	// console.log(json.homeViews[0].artists)
-
-	return {
-		home_artists:json.homeViews[0].artists,
-		home_paintings: json.homeViews[0].paintings
-	}
 }
 
 export default App
