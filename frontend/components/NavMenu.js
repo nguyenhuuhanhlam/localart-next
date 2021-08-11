@@ -3,8 +3,6 @@ import Image from 'next/image'
 import { useSelector } from 'react-redux'
 import { Nav,Navbar,Container } from 'react-bootstrap'
 
-
-
 const NavMenu = ({ logo }) =>
 {
 	const cart = useSelector((state) => state.cart)
@@ -28,6 +26,7 @@ const NavMenu = ({ logo }) =>
 				</Navbar.Toggle>
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
+						<Link href="/" passHref><Nav.Link>Home</Nav.Link></Link>
 						<Link href="/artists" passHref><Nav.Link>Artists</Nav.Link></Link>
 						<Link href="/paintings"passHref><Nav.Link>Paintings</Nav.Link></Link>
 					</Nav>
@@ -48,16 +47,3 @@ const NavMenu = ({ logo }) =>
 }
 
 export default NavMenu
-
-/*
-<Navbar.Toggle
-					aria-controls="responsive-navbar-nav"
-					children={(
-						<>
-							<span className="icon-bar top-bar"></span>
-							<span className="icon-bar middle-bar"></span>
-							<span className="icon-bar bottom-bar"></span>
-						</>
-					)}
-				/>
-*/

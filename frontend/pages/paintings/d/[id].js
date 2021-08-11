@@ -1,34 +1,17 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { Breadcrumb,Container,Row,Col,Button } from 'react-bootstrap'
 
+import { PaintingListInfinite } from '../../../components'
 import { HOST_URL,STRAPI_ENDPOINT } from '../../../lib/constants'
 import { addToCart } from '../../../redux/cart.slice'
 import styles from '../../../styles/PaintingDetail.module.scss'
 
-const PaintingDetail = () =>
+const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 {
-	const router = useRouter()
 	const dispatch = useDispatch()
-	const [painting,setPainting] = useState(null)
 	const imgLoader = ({ src }) => STRAPI_ENDPOINT+src
-
-	useEffect(()=>{
-		
-		if(!router.isReady)
-			return 0
-
-		fetch(`/api/get-painting-details?id=${router.query.id}`)
-			.then(response=>response.json())
-			.then(responseJson=>setPainting(responseJson.painting))
-
-	}, [router.isReady])
-
-	if (!painting)
-		return 'pending...'
 
 	return (
 		<Container className="pt-3">
@@ -50,43 +33,43 @@ const PaintingDetail = () =>
 						<Image
 							loader={imgLoader}
 							alt=""
-							src={ painting.media[0].formats.small.url }
+							src={ detailData.media[0].formats.small.url }
 							width={414} height={414}
 							objectFit='cover'
 						/>
 					</div>
-					<Button className="btn-sm">
+					<Button className="btn-sm btn-info">
 						<i className="bi bi-arrows-fullscreen"></i>
 					</Button>
 				</Col>
 				<Col>
-					<div>
-						<div className={styles.painting_title}>{ painting.vn_title.replace('|','\u2022') }</div>
-						<div className={styles.artist}>{ painting.artist.full_name }</div>
-						<div className={styles.painting_type}>{ painting.painting_type.en_name }</div>
+					<div className={styles.wrapper}>
+						<div className={styles.painting_title}>{ detailData.vn_title.replace('|','\u2022') }</div>
+						<div className={styles.artist}>{ detailData.artist.full_name }</div>
+						<div className={styles.painting_type}>{ detailData.painting_type.en_name }</div>
 
 						<div className={styles.year}>
 							<span>Year</span>
-							<span>{ painting.year||null }</span>
+							<span>{ detailData.year||null }</span>
 						</div>
 						<div className={styles.dimension}>
 							<span>Dimension</span>
-							<span>{ painting.width }cm x { painting.height }cm</span>
+							<span>{ detailData.width }cm x { detailData.height }cm</span>
 						</div>
 						<div className={styles.price}>
 							<span>Price</span>
-							<span>{ Number(painting.price).toLocaleString(painting.price_unit||'vi') }</span>
+							<span>{ Number(detailData.price).toLocaleString(detailData.price_unit||'vi') }</span>
 						</div>
 						<div className={styles.action}>
 							<Button
 								className="btn btn-info btn-sm"
 								onClick={
 									()=>dispatch(addToCart({
-										id: painting.id,
-										vn_title: painting.vn_title,
-										artist: painting.artist,
-										painting_type: painting.painting_type,
-										price: painting.price
+										id: detailData.id,
+										vn_title: detailData.vn_title,
+										artist: detailData.artist,
+										painting_type: detailData.painting_type,
+										price: detailData.price
 									}))
 								}
 							>
@@ -99,18 +82,48 @@ const PaintingDetail = () =>
 
 			<Row>
 				<Col>
-					<h5 className="pt-4">
+					<h5 className="pt-5 pb-3">
 						<span>Other Paintings by </span>
-						<span className={styles.by_artist}>{ painting.artist.full_name }</span>
+						<span className={styles.by_artist}>{ detailData.artist.full_name }</span>
 					</h5>
 				</Col>
 			</Row>
 
 			<Row>
-				<Col></Col>
+				<Col>
+					<PaintingListInfinite items={paintingsByArtistData} />
+				</Col>
 			</Row>
 		</Container>
 	)
+}
+
+/*
+const PaintingDetail = ({ detailData,paintingsByArtistData }) => {
+	console.log(detailData,paintingsByArtistData)
+	return 'TEST.'
+}
+*/
+
+export const getServerSideProps = async (context) =>
+{
+	const { id } = context.params
+	
+	const painting_Response = await fetch(`${HOST_URL}/api/get-painting-details?id=${id}`)
+	const detailData = await painting_Response.json()
+
+	const paintingsByArtist_Response =
+		await fetch(`
+			${HOST_URL}/api/get-paintings-filters?artist_id=${detailData.painting.artist.id}
+		`)
+	const paintingsByArtistData = await paintingsByArtist_Response.json()
+		
+	return {
+		props: {
+			detailData: detailData.painting,
+			paintingsByArtistData: paintingsByArtistData.paintings
+		}
+	}
 }
 
 export default PaintingDetail
