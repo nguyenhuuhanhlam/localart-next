@@ -91,7 +91,7 @@ const PaintingDetail = ({ painting }) =>
 PaintingDetail.getInitialProps = async ({query}) =>
 {
 	const { id } = query
-	const res = await fetch(`${HOST_URL}/api/get-painting-details?id=${id}`)
+	const res = await fetch(`/api/get-painting-details?id=${id}`)
 	const json = await res.json()
 	return { painting: json.painting }
 }
