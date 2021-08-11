@@ -76,7 +76,13 @@ const PaintingDetail = () =>
 							<Button
 								className="btn btn-info btn-sm"
 								onClick={
-									()=>dispatch(addToCart({id,vn_title,artist,painting_type,price}))
+									()=>dispatch(addToCart({
+										id: painting.id,
+										vn_title: painting.vn_title,
+										artist: painting.artist,
+										painting_type: painting.painting_type,
+										price: painting.price
+									}))
 								}
 							>
 								Add To Cart

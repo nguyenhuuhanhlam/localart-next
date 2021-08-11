@@ -12,6 +12,7 @@
 	display: grid !important;
 	grid-template-columns: repeat(auto-fill, 200px);
 	grid-gap: 16px;
+	justify-content: space-between; 
 }
 .slide_caption {
 	position: absolute;

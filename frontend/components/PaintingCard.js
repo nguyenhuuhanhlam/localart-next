@@ -5,7 +5,7 @@ import styles from '../styles/PaintingCard.module.scss'
 const InStockStatus = ({ in_stock }) =>
 {
 	return (
-		<div className={`${styles.in_stock}`}>
+		<div className={styles.in_stock}>
 		{
 			in_stock > 0
 				? <i className="bi bi-bag-plus"></i>
@@ -55,47 +55,5 @@ const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnCli
 	else
 		return 'Pending...'
 }
-
-
-// const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnClick }) =>
-// {
-// 	const { vn_title,artist,media,painting_type,in_stock } = item
-// 	const imgLoader = ({ src }) => STRAPI_ENDPOINT+src
-
-// 	if (item)
-// 		return (
-// 			<div>
-// 				<div
-// 					className={styles.photo}
-// 					onClick={itemOnClick}
-// 				>
-// 					<Image
-// 						loader={imgLoader}
-// 						alt=""
-// 						src={ media[0].formats.thumbnail.url }
-// 						width={150} height={150}
-// 						objectFit='cover'
-// 					/>
-// 				</div>
-// 				<div className={styles.infos}>
-// 					<div>
-// 						<div className={styles.title}>{ vn_title.replace('|','\u2022') }</div>
-// 						<div className={styles.artist}>{ artist.full_name }</div>
-// 					</div>
-// 					<div>
-// 					{
-// 						options
-// 						? options.pick
-// 							? <div className={styles.painting_type}>{ painting_type.en_name }</div>
-// 							: null
-// 						: <InStockStatus in_stock={in_stock} />
-// 					}
-// 					</div>
-// 				</div>
-// 			</div>
-// 		)
-// 	else
-// 		return 'Pending...'
-// }
 
 export default PaintingCard
