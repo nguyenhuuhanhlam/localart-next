@@ -56,10 +56,9 @@ const App = () =>
 			
 			<div className={styles.helper} />
 			<div className={styles.container}>
-				<Container className="p-0">
-					<h5 className="pt-4">News</h5>
-					<h6>EDITOR'S PICK</h6>
-					<div className={`p-0 pt-3 ${styles.editor_pick}`}>
+				<h5 className="pt-4">News</h5>
+				<h6>EDITOR'S PICK</h6>
+				<div className={`pt-3 ${styles.editor_pick}`}>
 					{
 						data.homeViews[0].paintings.map((v,k)=>{
 							return (
@@ -72,8 +71,7 @@ const App = () =>
 							)
 						})
 					}
-					</div>
-				</Container>
+				</div>
 			</div>
 		</>
 	)

@@ -13,7 +13,7 @@ const PaintingDetail = () =>
 {
 	const router = useRouter()
 	const dispatch = useDispatch()
-	const [painting,setPainting] = useState(null)	
+	const [painting,setPainting] = useState(null)
 	const imgLoader = ({ src }) => STRAPI_ENDPOINT+src
 
 	useEffect(()=>{
@@ -46,13 +46,18 @@ const PaintingDetail = () =>
 
 			<Row>
 				<Col md="auto">
-					<Image
-						loader={imgLoader}
-						alt=""
-						src={ painting.media[0].formats.small.url }
-						width={414} height={414}
-						objectFit='cover'
-					/>
+					<div>
+						<Image
+							loader={imgLoader}
+							alt=""
+							src={ painting.media[0].formats.small.url }
+							width={414} height={414}
+							objectFit='cover'
+						/>
+					</div>
+					<Button className="btn-sm">
+						<i className="bi bi-arrows-fullscreen"></i>
+					</Button>
 				</Col>
 				<Col>
 					<div>
