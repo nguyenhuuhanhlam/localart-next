@@ -6,7 +6,7 @@ import SwiperCore, { Pagination } from 'swiper/core'
 import { Nav,Navbar,Container } from 'react-bootstrap'
 
 import { PaintingCard,InformationIndication } from '../components'
-import { HOST_URL,STRAPI_ENDPOINT } from '../lib/constants'
+import { STRAPI_ENDPOINT } from '../lib/constants'
 import styles from '../styles/App.module.scss'
 
 SwiperCore.use([Pagination])
@@ -17,8 +17,8 @@ const App = () =>
 	const fetcher = url=>fetch(url).then(res=>res.json())
 
 	const { data, error } = useSWR('/api/get-homeviews', fetcher)
-	if (error) return <InformationIndication text="Failed to load." iconName="" />
-	if (!data) return <InformationIndication text="Loading..." iconName="bi-hourglass" />
+	if (error) return <div className="pt-3"><InformationIndication text="Failed to load." iconName="bi-hdd-network" /></div>
+	if (!data) return <div className="pt-3"><InformationIndication text="Loading..." iconName="bi-hourglass" /></div>
 
 	return (
 		<>

@@ -1,14 +1,14 @@
 import { useEffect,useState } from 'react'
 import Link from 'next/link'
 import { Breadcrumb, Container, Row, Col, Nav } from 'react-bootstrap'
-import { HOST_URL,STRAPI_ENDPOINT } from '../../lib/constants'
+import { STRAPI_ENDPOINT } from '../../lib/constants'
 import { InformationIndication } from '../../components'
 
 const Artists = () =>
 {
 	const [artists,setArtists] = useState([])
 	useEffect(()=>{
-		fetch(`${HOST_URL}/api/get-artists`)
+		fetch(`/api/get-artists`)
 			.then(response=>response.json())
 			.then(jsonData=>setArtists(jsonData.artists))
 	},[])
