@@ -9,12 +9,26 @@ import { HOST_URL,STRAPI_ENDPOINT } from '../../../lib/constants'
 import { addToCart } from '../../../redux/cart.slice'
 import styles from '../../../styles/PaintingDetail.module.scss'
 
-const PaintingDetail = ({ painting }) =>
+const PaintingDetail = () =>
 {
 	const router = useRouter()
-	const dispatch = useDispatch()	
-	const { id,vn_title,artist,painting_type,price } = painting
+	const dispatch = useDispatch()
+	const [painting,setPainting] = useState(null)	
 	const imgLoader = ({ src }) => STRAPI_ENDPOINT+src
+
+	useEffect(()=>{
+		
+		if(!router.isReady)
+			return 0
+
+		fetch(`/api/get-painting-details?id=${router.query.id}`)
+			.then(response=>response.json())
+			.then(responseJson=>setPainting(responseJson.painting))
+
+	}, [router.isReady])
+
+	if (!painting)
+		return 'pending...'
 
 	return (
 		<Container className="pt-3">
@@ -88,23 +102,4 @@ const PaintingDetail = ({ painting }) =>
 	)
 }
 
-PaintingDetail.getInitialProps = async ({query}) =>
-{
-	const { id } = query
-	const res = await fetch(`/api/get-painting-details?id=${id}`)
-	const json = await res.json()
-	return { painting: json.painting }
-}
-
 export default PaintingDetail
-
-/*
-<Image
-						loader={}
-						alt=""
-						className="img-fluid"
-						src={ STRAPI_ENDPOINT+painting.media[0].formats.small.url }
-						layout="responsive"
-					/>
-
-*/
