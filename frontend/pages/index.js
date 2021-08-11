@@ -1,5 +1,6 @@
 import { useEffect,useState } from 'react'
 import { useRouter } from 'next/router'
+import useSWR from 'swr'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Pagination } from 'swiper/core'
 import { Nav,Navbar,Container } from 'react-bootstrap'
@@ -13,18 +14,11 @@ SwiperCore.use([Pagination])
 const App = () =>
 {
 	const router = useRouter()
-	const [data,setData] = useState({ home_artists:[], home_paintings:[] })
+	const fetcher = url=>fetch(url).then(res=>res.json())
 
-	useEffect(()=>{
-		fetch(`${HOST_URL}/api/get-homeviews`)
-			.then(response=>response.json())
-			.then(jsonData=>{
-				setData({
-					home_artists:jsonData.homeViews[0].artists,
-					home_paintings: jsonData.homeViews[0].paintings
-				})
-			})
-	},[])
+	const { data, error } = useSWR('/api/get-homeviews', fetcher)
+	if (error) return <InformationIndication text="Failed to load." iconName="" />
+	if (!data) return <InformationIndication text="Loading..." iconName="bi-hourglass" />
 
 	return (
 		<>
@@ -36,8 +30,7 @@ const App = () =>
 				}}
 			>
 				{
-					data.home_artists.length
-					? data.home_artists.map((v,k)=>{
+					data.homeViews[0].artists.map((v,k)=>{
 						return (
 							<SwiperSlide key={k}>
 								<div
@@ -57,33 +50,30 @@ const App = () =>
 							</SwiperSlide>
 						)
 					})
-					: <InformationIndication text="Pending..." iconName="bi-hourglass" />
 				}
 
 			</Swiper>
 			
 			<div className={styles.helper} />
 			<div className={styles.container}>
-
-				<h5 className="pt-4">News</h5>
-				<h6>EDITOR'S PICK</h6>
-				<div className={styles.editor_pick}>
+				<Container className="p-0">
+					<h5 className="pt-4">News</h5>
+					<h6>EDITOR'S PICK</h6>
+					<Container className={`p-0 ${styles.editor_pick}`}>
 					{
-						data.home_paintings.length
-						? data.home_paintings.map((v,k)=>{
+						data.homeViews[0].paintings.map((v,k)=>{
 							return (
 								<PaintingCard
 									key={k}
 									item={v}
-									options={{pick:true}}
+									options={{ pick:true }}
 									itemOnClick={ ()=>router.push(`/paintings/d/${v.id}`) }
 								/>
 							)
 						})
-						: <InformationIndication text="Pending..." iconName="bi-hourglass" />
 					}
-				</div>
-
+					</Container>
+				</Container>
 			</div>
 		</>
 	)

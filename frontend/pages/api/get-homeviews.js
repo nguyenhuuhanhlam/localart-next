@@ -1,7 +1,27 @@
+import Cors from 'cors'
 import { request, gql } from 'graphql-request' 
 import { STRAPI_ENDPOINT } from '../../lib/constants'
 
-export default function handler(req, res)
+// Initializing the cors middleware
+const cors = Cors({
+	methods: ['GET', 'HEAD'],
+})
+
+// Helper method to wait for a middleware to execute before continuing
+// And to throw an error when an error happens in a middleware
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result)
+      }
+
+      return resolve(result)
+    })
+  })
+}
+
+export default async function handler(req, res)
 {
 	const q = gql`
 		{
@@ -40,6 +60,8 @@ export default function handler(req, res)
 			}
 		}
 	`
+
+	await runMiddleware(req, res, cors)
 
 	return request(STRAPI_ENDPOINT+'/graphql', q)
 		.then(data=>res.status(200).json(data))

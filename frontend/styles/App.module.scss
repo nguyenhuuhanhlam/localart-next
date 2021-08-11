@@ -9,12 +9,9 @@
 	min-height: 100vh;
 }
 .editor_pick {
-	display: flex;
-	flex-wrap: wrap;
-	& > div {
-		padding-right: 16px;
-		padding-bottom: 16px;
-	}
+	display: grid !important;
+	grid-template-columns: repeat(auto-fill, 200px);
+	grid-gap: 16px;
 }
 .slide_caption {
 	position: absolute;

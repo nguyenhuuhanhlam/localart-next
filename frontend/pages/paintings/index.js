@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { Breadcrumb, Container } from 'react-bootstrap'
 import { PaintingListInfinite,InformationIndication } from '../../components'
 
-import { HOST_URL,STRAPI_ENDPOINT } from '../../lib/constants'
+import { STRAPI_ENDPOINT } from '../../lib/constants'
 
 const limit = 25
 
@@ -15,7 +15,7 @@ const Paintings = ({ count }) =>
 	const router = useRouter()
 
 	useEffect(()=>{
-		fetch(`${HOST_URL}/api/get-paintings?limit=${limit}&start=0`)
+		fetch(`/api/get-paintings?limit=${limit}&start=0`)
 			.then(response=>response.json())
 			.then(jsonData=>setPaintings(jsonData.paintings))
 	},[])
@@ -32,7 +32,7 @@ const Paintings = ({ count }) =>
 				items={ paintings }
 				hasMore={ count>paintings.length ? true : false }
 				next={()=>{
-					fetch(`${HOST_URL}/api/get-paintings?limit=${limit}&start=${start+limit}`)
+					fetch(`/api/get-paintings?limit=${limit}&start=${start+limit}`)
 						.then(response=>response.json())
 						.then(data=>setPaintings(paintings.concat(data.paintings)))
 
