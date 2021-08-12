@@ -38,7 +38,7 @@ const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnCli
 				<div className={styles.infos}>
 					<div>
 						<div className={styles.title}>{ vn_title.replace('|','\u2022') }</div>
-						<div className={styles.artist}>{ artist?artist.full_name:'-' }</div>
+						<div className={styles.artist}>{ artist ? artist.full_name : (<i className="bi bi-pin-map"></i>) }</div>
 					</div>
 					<div>
 					{

@@ -4,21 +4,18 @@ import { useRouter } from 'next/router'
 import { Breadcrumb, Container } from 'react-bootstrap'
 import { PaintingListInfinite,InformationIndication } from '../../components'
 
-import { STRAPI_ENDPOINT } from '../../lib/constants'
+import { HOST_URL,STRAPI_ENDPOINT } from '../../lib/constants'
 
 const limit = 25
 
-const Paintings = ({ count }) =>
+const Paintings = ({ count, paintingsData, __ready=true }) =>
 {
-	const [paintings,setPaintings] = useState([])
+	const [paintings,setPaintings] = useState(paintingsData)
 	const [start,setStart] = useState(0)
 	const router = useRouter()
 
-	useEffect(()=>{
-		fetch(`/api/get-paintings?limit=${limit}&start=0`)
-			.then(response=>response.json())
-			.then(jsonData=>setPaintings(jsonData.paintings))
-	},[])
+	if (!__ready)
+		return <div className="pt-3"><InformationIndication text="Server Not Responding." iconName="bi-hdd-network" /></div>
 
 	return (
 		<Container className="p-3">
@@ -44,12 +41,26 @@ const Paintings = ({ count }) =>
 	)
 }
 
-Paintings.getInitialProps = async () =>
+export const getServerSideProps = async (context) =>
 {
-	const count_res = await fetch(`${STRAPI_ENDPOINT}/paintings/count`)
-	const count = await count_res.json()
+	try {
+		const count_Response = await fetch(`${STRAPI_ENDPOINT}/paintings/count`)
+		const count = await count_Response.json()
 
-	return { count }
+		const paintings_Response = await fetch(`${HOST_URL}/api/get-paintings?limit=${limit}&start=0`)
+		const paintingsData = await paintings_Response.json()
+
+		return {
+			props: {
+				__ready: true,
+				count,
+				paintingsData: paintingsData.paintings
+			}
+		}
+	}
+	catch (error) {
+		return {props:{__ready:false}}
+	}
 }
 
 export default Paintings

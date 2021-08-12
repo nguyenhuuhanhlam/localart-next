@@ -107,22 +107,26 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) => {
 
 export const getServerSideProps = async (context) =>
 {
-	const { id } = context.params
-	
-	const painting_Response = await fetch(`${HOST_URL}/api/get-painting-details?id=${id}`)
-	const detailData = await painting_Response.json()
-
-	const paintingsByArtist_Response =
-		await fetch(`
-			${HOST_URL}/api/get-paintings-filters?artist_id=${detailData.painting.artist.id}
-		`)
-	const paintingsByArtistData = await paintingsByArtist_Response.json()
+	try {
+		const { id } = context.params
 		
-	return {
-		props: {
-			detailData: detailData.painting,
-			paintingsByArtistData: paintingsByArtistData.paintings
+		const painting_Response = await fetch(`${HOST_URL}/api/get-painting-details?id=${id}`)
+		const detailData = await painting_Response.json()
+
+		const paintingsByArtist_Response =
+			await fetch(`
+				${HOST_URL}/api/get-paintings-filters?artist_id=${detailData.painting.artist.id}
+			`)
+		const paintingsByArtistData = await paintingsByArtist_Response.json()
+			
+		return {
+			props: {
+				detailData: detailData.painting,
+				paintingsByArtistData: paintingsByArtistData.paintings
+			}
 		}
+	} catch (error) {
+		
 	}
 }
 
