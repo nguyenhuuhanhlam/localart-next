@@ -1,0 +1,15 @@
+.wrapper {
+	& h6:not(:first-child) {
+		padding-top: 2em;
+	}
+}
+.tags_container {
+	& > div:first-child {
+		margin-right: .5em;
+		margin-bottom: .5em;
+	}
+	& > * + * {
+		margin-right: .5em;
+		margin-bottom: .5em;
+	}
+}

@@ -22,6 +22,9 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 						<Link href="/paintings" passHref>
 							<Breadcrumb.Item>All Paintings</Breadcrumb.Item>
 						</Link>
+						<Link href="/paintings/filters" passHref>
+							<Breadcrumb.Item>Filters</Breadcrumb.Item>
+						</Link>
 						<Breadcrumb.Item active>Details</Breadcrumb.Item>
 					</Breadcrumb>
 				</Col>

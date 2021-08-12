@@ -1,0 +1,12 @@
+.container {
+	font-size: .75rem;
+	background-color: whitesmoke;
+	border-radius: .5em;
+	cursor: pointer;
+	& span:first-child {
+		padding: 0 3px;
+	}
+}
+.container:hover {
+	font-weight: bold;
+}
