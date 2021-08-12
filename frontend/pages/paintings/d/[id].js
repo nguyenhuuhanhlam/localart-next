@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { Breadcrumb,Container,Row,Col,Button } from 'react-bootstrap'
 
@@ -12,6 +13,7 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 {
 	const dispatch = useDispatch()
 	const imgLoader = ({ src }) => STRAPI_ENDPOINT+src
+	const router = useRouter()
 
 	return (
 		<Container className="pt-3">
@@ -94,7 +96,10 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 
 			<Row>
 				<Col>
-					<PaintingListInfinite items={paintingsByArtistData} />
+					<PaintingListInfinite
+						items={paintingsByArtistData}
+						itemOnClick={ e=>router.push(`/paintings/d/${e.id}`) }
+					/>
 				</Col>
 			</Row>
 		</Container>
