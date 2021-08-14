@@ -9,10 +9,10 @@
 	min-height: 100vh;
 }
 .editor_pick {
-	display: grid !important;
-	grid-template-columns: repeat(auto-fill, 200px);
-	grid-gap: 24px;
-	justify-content: center; 
+	display: grid;
+	align-items: center;
+	grid-gap: 1.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 .slide_caption {
 	position: absolute;

@@ -41,7 +41,7 @@ const PaintingsFilters = ({typesData}) =>
 	]
 
 	return (
-		<Container className="p-3">
+		<Container className="p-3 pt-5">
 			
 			<Breadcrumb>
 				<Link href="/paintings" passHref>

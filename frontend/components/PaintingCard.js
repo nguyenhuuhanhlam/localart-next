@@ -31,7 +31,7 @@ const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnCli
 						loader={imgLoader}
 						alt=""
 						src={ media[0].formats.thumbnail.url }
-						width={200} height={200}
+						width={414} height={414}
 						objectFit='cover'
 					/>
 				</div>

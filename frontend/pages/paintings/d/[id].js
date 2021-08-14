@@ -16,7 +16,7 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 	const router = useRouter()
 
 	return (
-		<Container className="pt-3">
+		<Container className="pt-5">
 
 			<Row>
 				<Col>

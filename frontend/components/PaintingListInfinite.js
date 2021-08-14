@@ -13,13 +13,11 @@ const PaintingListInfinite = ({ items,next,hasMore,itemOnClick }) =>
 			loader={ <InformationIndication text="Loading..." iconName="bi-hourglass" /> }
 			endMessage={ <InformationIndication text="" iconName="bi-arrow-bar-up" /> }
 		>
-			<Container className={`d-flex flex-wrap justify-content-between p-0 ${styles.layout}`}>
+			<div className={styles.container}>
 			{
-				items.map((v,k)=>{
-					return <PaintingCard key={k} item={v} itemOnClick={()=>itemOnClick(v)} />
-				})
+				items.map((v,k) => <PaintingCard key={k} item={v} itemOnClick={()=>itemOnClick(v)} />)
 			}
-			</Container>
+			</div>
 		</InfiniteScroll>
 	)
 }
