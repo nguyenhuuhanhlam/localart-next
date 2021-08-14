@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Breadcrumb,Container,Row,Col } from 'react-bootstrap'
 
 import { HOST_URL,STRAPI_ENDPOINT } from '../../../lib/constants'
-import { Tag,PaintingListInfinite } from '../../../components'
+import { Tag,PaintingListInfinite,InformationIndication } from '../../../components'
 import styles from '../../../styles/PaintingsFilters.module.scss'
 
 const filtersQuery = (filters) =>
@@ -94,7 +94,7 @@ const PaintingsFilters = ({typesData}) =>
 				{
 					results.length
 					? <PaintingListInfinite items={results} itemOnClick={ e=>router.push(`/paintings/d/${e.id}`) } />
-					: 'nothing show'
+					: <InformationIndication text="Couldn't find any matches." iconName="bi-search"/>
 				}
 				
 			</div>
