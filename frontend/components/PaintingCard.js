@@ -40,15 +40,7 @@ const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnCli
 						<div className={styles.title}>{ vn_title.replace('|','\u2022') }</div>
 						<div className={styles.artist}>{ artist ? artist.full_name : (<i className="bi bi-pin-map"></i>) }</div>
 					</div>
-					<div>
-					{
-						options
-						? options.pick
-							? <div className={styles.painting_type}>{ painting_type.en_name }</div>
-							: null
-						: <InStockStatus in_stock={in_stock} />
-					}
-					</div>
+					<div className={styles.painting_type}>{ painting_type?painting_type.en_name:'Unknown' }</div>
 				</div>
 			</div>
 		)
@@ -57,3 +49,15 @@ const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnCli
 }
 
 export default PaintingCard
+
+/*
+<div>
+	{
+		options
+		? options.pick
+			? <div className={styles.painting_type}>{ painting_type.en_name }</div>
+			: null
+		: <InStockStatus in_stock={in_stock} />
+	}
+</div>
+*/

@@ -16,7 +16,7 @@ const Artists = () =>
 	return (
 		<Container className="p-3 pt-5">
 			<Breadcrumb>
-				<Breadcrumb.Item active>The Artists</Breadcrumb.Item>
+				<Breadcrumb.Item active>Artists</Breadcrumb.Item>
 			</Breadcrumb>
 			<Container  className="p-0">
 			{

@@ -16,10 +16,13 @@ export default function handler(req, res)
 				id
 				en_title
 				vn_title
-				in_stock
 				artist {
 					full_name
 				}
+				painting_type {
+					en_name
+				}
+				in_stock
 				media {
 					formats
 				}
