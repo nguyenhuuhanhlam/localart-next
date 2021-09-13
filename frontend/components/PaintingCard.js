@@ -18,7 +18,6 @@ const InStockStatus = ({ in_stock }) =>
 const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnClick }) =>
 {
 	const { vn_title,artist,media,painting_type,in_stock } = item
-	const imgLoader = ({ src }) => STRAPI_ENDPOINT+src
 
 	if (item)
 		return (
@@ -28,9 +27,9 @@ const PaintingCard = ({ item,options,itemOnClick,artistOnClick,paintingtypeOnCli
 					onClick={itemOnClick}
 				>
 					<Image
-						loader={imgLoader}
+						unoptimized
 						alt=""
-						src={ media[0].formats.thumbnail.url }
+						src={ STRAPI_ENDPOINT+media[0].formats.thumbnail.url }
 						width={414} height={414}
 						objectFit='cover'
 					/>

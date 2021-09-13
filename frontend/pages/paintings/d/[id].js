@@ -74,7 +74,8 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 										vn_title: detailData.vn_title,
 										artist: detailData.artist,
 										painting_type: detailData.painting_type,
-										price: detailData.price
+										price: detailData.price,
+										thumbnail: detailData.media[0].formats.thumbnail
 									}))
 								}
 							>
