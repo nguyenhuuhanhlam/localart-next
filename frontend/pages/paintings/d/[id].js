@@ -12,7 +12,6 @@ import styles from '../../../styles/PaintingDetail.module.scss'
 const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 {
 	const dispatch = useDispatch()
-	const imgLoader = ({ src }) => STRAPI_ENDPOINT+src
 	const router = useRouter()
 
 	return (
@@ -36,9 +35,9 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 				<Col md="auto">
 					<div>
 						<Image
-							loader={imgLoader}
+							unoptimized
 							alt=""
-							src={ detailData.media[0].formats.small.url }
+							src={ STRAPI_ENDPOINT+detailData.media[0].formats.small.url }
 							width={414} height={414}
 							objectFit='cover'
 						/>
