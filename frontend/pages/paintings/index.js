@@ -18,7 +18,7 @@ const Paintings = ({ count, paintingsData, __ready=true }) =>
 		return <div className="pt-3"><InformationIndication text="Server Not Responding." iconName="bi-hdd-network" /></div>
 
 	return (
-		<Container className="p-3 pt-5">
+		<Container className="p-4 pt-5">
 			<Breadcrumb>
 				<Breadcrumb.Item active>All Paintings</Breadcrumb.Item>
 				<Link href="/paintings/filters" passHref>

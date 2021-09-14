@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { Breadcrumb,Container,Row,Col,Button } from 'react-bootstrap'
 
 import { PaintingListInfinite } from '../../../components'
-import { HOST_URL,STRAPI_ENDPOINT } from '../../../lib/constants'
+import { HOST_URL, STRAPI_ENDPOINT } from '../../../lib/constants'
 import { addToCart } from '../../../redux/cart.slice'
 import styles from '../../../styles/PaintingDetail.module.scss'
 
@@ -15,8 +15,7 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 	const router = useRouter()
 
 	return (
-		<Container className="pt-5">
-
+		<Container className="p-4 pt-5">
 			<Row>
 				<Col>
 					<Breadcrumb>
@@ -122,9 +121,7 @@ export const getServerSideProps = async (context) =>
 		const detailData = await painting_Response.json()
 
 		const paintingsByArtist_Response =
-			await fetch(`
-				${HOST_URL}/api/get-paintings-filters?artist_id=${detailData.painting.artist.id}
-			`)
+			await fetch(`${HOST_URL}/api/get-paintings-filters?artist_id=${detailData.painting.artist.id}`)
 		const paintingsByArtistData = await paintingsByArtist_Response.json()
 			
 		return {
