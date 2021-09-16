@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 
 const cartSlice = createSlice({
 	name: 'cart',
 	initialState: [],
 	reducers: {
 		addToCart: (state, action) => {
-			const itemExists = state.find((item) => item.id === action.payload.id)
+			const itemExists = state.find(item => item.id === action.payload.id)
 			
 			if (itemExists) {
 				alert('Item Exists')
@@ -15,7 +15,9 @@ const cartSlice = createSlice({
 			}
 		},
 		removeFromCart: (state, action) => {
-			console.log('removeFromCart:state:/',state,'/')
+			// console.log(current(state))
+			const cur = state.findIndex(v => v.id === action.payload.id)
+			state.splice(cur,1)
 		}
 	}
 })
