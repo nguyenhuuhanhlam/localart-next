@@ -67,14 +67,19 @@ const PaintingDetail = ({ detailData,paintingsByArtistData }) =>
 							<Button
 								className="btn btn-info btn-sm"
 								onClick={
-									()=>dispatch(addToCart({
-										id: detailData.id,
-										vn_title: detailData.vn_title,
-										artist: detailData.artist,
-										painting_type: detailData.painting_type,
-										price: detailData.price,
-										thumbnail: detailData.media[0].formats.thumbnail
-									}))
+									()=>{
+										if (detailData.price>0)
+											dispatch(addToCart({
+												id: detailData.id,
+												vn_title: detailData.vn_title,
+												artist: detailData.artist,
+												painting_type: detailData.painting_type,
+												price: detailData.price,
+												thumbnail: detailData.media[0].formats.thumbnail
+											}))
+										else
+											alert('This item not available.')
+									}
 								}
 							>
 								Add To Cart
