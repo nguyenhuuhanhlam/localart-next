@@ -1,12 +1,14 @@
 import { useSelector } from 'react-redux'
-import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { Breadcrumb,Container,Row,Col,Button } from 'react-bootstrap'
+import Image from 'next/image'
 import { STRAPI_ENDPOINT } from '../../lib/constants'
 import { removeFromCart } from '../../redux/cart.slice'
 import styles from '../../styles/Cart.module.scss'
 
-const TotalRow = ({cart}) => {
+const TotalRow = ({ cart }) => {
+	const router = useRouter()
 	return (
 		<>
 			<br/>
@@ -16,7 +18,13 @@ const TotalRow = ({cart}) => {
 					<span><strong>{ Number(cart.reduce((sum,v)=> sum+v.price,0)).toLocaleString('vi') }</strong></span>
 				</Col>
 				<Col className="d-flex justify-content-center">
-					<Button className="btn btn-sm btn-success" style={{ lineHeight:1,padding:2 }}>Checkout</Button>
+					<Button
+						className="btn btn-sm btn-success"
+						style={{ lineHeight:1,padding:2 }}
+						onClick={()=>router.push('/cart/pre-order')}
+					>
+						Pre-Order
+					</Button>
 				</Col>
 			</Row>
 		</>
