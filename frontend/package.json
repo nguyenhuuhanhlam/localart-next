@@ -6,7 +6,8 @@
     "dev": "HOST=0.0.0.0 PORT=8102 next dev",
     "build": "next build",
     "start": "HOST=0.0.0.0 PORT=8102 next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "win-dev": "next dev -- --port 8102"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
